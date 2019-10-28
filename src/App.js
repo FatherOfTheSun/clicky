@@ -14,8 +14,11 @@ class App extends Component {
 
   GameOver = () => {
     if (this.state.score > this.state.topscore) {
-      this.setState({ topscore: this.state.score }, function () {
+      this.setState({ topscore: this.state.score, score: 0 }, function () {
+        this.setState({ score: 0 })
         console.log(this.state.topscore);
+
+
       });
     }
     this.state.cards.forEach(card => {
@@ -24,7 +27,6 @@ class App extends Component {
     alert(`Game Over! :(\nscore: ${this.state.score}`);
     this.setState({ score: 0 });
     return true;
-
   }
 
   clickCount = id => {
@@ -39,6 +41,7 @@ class App extends Component {
           return true;
         } else {
           this.GameOver();
+
         }
       }
     });
@@ -46,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Header score={this.state.score} highscore={this.state.highscore}> 🖱  Game</Header>
+        <Header score={this.state.score} topscore={this.state.topscore}> C👅y   Game</Header>
         {this.state.cards.map(card => (
           <Card
             clickCount={this.clickCount}
